@@ -1,0 +1,29 @@
+{
+  "name": "angular-split-html",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jack-in-the-box/angular-split-html",
+  "authors": [
+    "Aurélien Masfrand <amasfrand@jack.fr>"
+  ],
+  "description": "Split html content in some piece of correct html, inspired by https://github.com/punkave/split-html",
+  "main": "dist/angular-split-html.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "angular",
+    "html"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "sample",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.4.1"
+  }
+}
