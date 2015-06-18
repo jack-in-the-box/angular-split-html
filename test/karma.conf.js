@@ -16,6 +16,7 @@ module.exports = function(config) {
     files: [
       '../bower_components/angular/angular.js',
       '../bower_components/angular-mocks/angular-mocks.js',
+      '../bower_components/jquery/dist/jquery.js',
       '../src/angular-split-html.js',
       '../test/angular-split-html.js',
     ],

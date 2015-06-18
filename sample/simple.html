@@ -3,11 +3,16 @@
 <head>
 	<title>Simple sample of angular split html</title>
 	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../dist/angular-split-html.js"></script>
 	<script src="app.js">
 	</script>
 </head>
 <body ng-app="SplitHtmlSample" ng-controller="SampleCtrl">
-	<div>{{coucou}}</div>
+	<h2>Entrée</h2>
+	<textarea ng-model="input"></textarea>
+	<button ng-click="split()">Split !</button>
+	<h2>Sortie</h2>
+	<div>{{output | json}}</div>
 </body>
 </html>
