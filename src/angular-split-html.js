@@ -9,7 +9,16 @@
         var self = this;
 
         self.divide = function(html) {
-            return splitHtml(html, 'img');
+            var result = splitHtml(html, 'p');
+            return _.filter(result, validHtml);
+        };
+
+        var validHtml = function(html) {
+            if(html === '') {
+                return false;
+            }
+
+            return true;
         };
 
         var cheerio;

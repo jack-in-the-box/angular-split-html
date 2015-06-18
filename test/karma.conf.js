@@ -17,6 +17,7 @@ module.exports = function(config) {
       '../bower_components/angular/angular.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       '../bower_components/jquery/dist/jquery.js',
+      '../bower_components/lodash/lodash.js',
       '../src/angular-split-html.js',
       '../test/angular-split-html.js',
     ],
@@ -58,7 +59,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     coverageReporter: {
       type : 'html',
