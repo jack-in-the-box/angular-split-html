@@ -15,7 +15,7 @@
         var self = this;
 
         self.divide = function(html) {
-            var result = splitHtml(html, 'p');
+            var result = splitHtml(html, 'img');
             return _.filter(result, validHtml);
         };
 
