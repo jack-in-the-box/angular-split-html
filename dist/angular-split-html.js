@@ -15,8 +15,36 @@
         var self = this;
 
         self.divide = function(html) {
-            var result = splitHtml(html, 'img');
-            return _.filter(result, validHtml);
+            var resultLinkImg = divideLinkImg(html);
+
+            var resultHn = [];
+            resultLinkImg.forEach(function(html) {
+                resultHn.push(divideHn(html));
+            });
+            resultHn = _.flattenDeep(resultHn);
+
+            var resultImg = [];
+            resultHn.forEach(function(html) {
+                resultImg.push(divideImg(html));
+            });
+            resultImg = _.flattenDeep(resultImg);
+            return _.filter(resultImg, validHtml);
+        };
+
+        var divideHn = function(html) {
+            return splitHtml(html, 'h1,h2,h3,h4,h5,h6');
+        };
+
+        var divideLinkImg = function(html) {
+            return splitHtml(html, 'a', function($el) {
+                return $el.find('img').length > 0;
+            });
+        };
+
+        var divideImg = function(html) {
+            return splitHtml(html, 'img', function($el) {
+                return $el.parent('a').length === 0;
+            });
         };
 
         var validHtml = function(html) {
