@@ -8,47 +8,63 @@
     function SplitHtml() {
         var self = this;
 
-        self.divide = function(html) {
-            var resultLinkImg = divideLinkImg(html);
+        var prepareForRun = function(html) {
+            return [html];
+        };
 
-            var resultHn = [];
-            resultLinkImg.forEach(function(html) {
-                resultHn.push(divideHn(html));
+        var splitImg = function(htmlArray) {
+            var result = [];
+            _.forEach(htmlArray, function(html) {
+                result.push(splitHtml(html, 'img', function($el) {
+                    return $el.parent('a').length === 0;
+                }));
             });
-            resultHn = _.flattenDeep(resultHn);
 
-            var resultImg = [];
-            resultHn.forEach(function(html) {
-                resultImg.push(divideImg(html));
+            return result;
+        };
+
+        var splitLinkImg = function(htmlArray) {
+            var result = [];
+            _.forEach(htmlArray, function(html) {
+                result.push(splitHtml(html, 'a', function($el) {
+                    return $el.find('img').length > 0;
+                }));
             });
-            resultImg = _.flattenDeep(resultImg);
-            return _.filter(resultImg, validHtml);
+
+            return result;
         };
 
-        var divideHn = function(html) {
-            return splitHtml(html, 'h1,h2,h3,h4,h5,h6');
+        var splitHn = function(htmlArray) {
+            var result = [];
+            _.forEach(htmlArray, function(html) {
+                result.push(splitHtml(html, 'h1,h2,h3,h4,h5,h6'));
+            });
+            return result;
         };
 
-        var divideLinkImg = function(html) {
-            return splitHtml(html, 'a', function($el) {
-                return $el.find('img').length > 0;
+        var purge = function(html) {
+            return _.filter(html, function(html) {
+                if(html === '') {
+                    return false;
+                }
+
+                return true;
             });
         };
 
-        var divideImg = function(html) {
-            return splitHtml(html, 'img', function($el) {
-                return $el.parent('a').length === 0;
-            });
-        };
+        self.run = _.flow(
+            prepareForRun,
+            _.flattenDeep,
+            splitImg,
+            _.flattenDeep,
+            splitLinkImg,
+            _.flattenDeep,
+            splitHn,
+            _.flattenDeep,
+            purge
+        );
 
-        var validHtml = function(html) {
-            if(html === '') {
-                return false;
-            }
-
-            return true;
-        };
-
+        /***** THIS HAVE TO GO OUT ! ******/
         var cheerio;
         if (typeof window === 'undefined') {
             // node
