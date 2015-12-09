@@ -34,5 +34,11 @@ describe('test angular-split-html', function() {
             expect(SplitHtml.run(input)).toEqual(output);
         });
 
+        it('Service should split two  <p> separated by a <hr>', function() {
+            var input = '<p>Lorem ipsum</p> <hr> <p>Lorene ipsum youpilou</p>';
+            var output = ['<p>Lorem ipsum</p>', '<p>Lorene ipsum youpilou</p>' ];
+            expect(SplitHtml.run(input)).toEqual(output);
+        });
+
     });
 });
