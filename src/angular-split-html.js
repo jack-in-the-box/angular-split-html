@@ -42,6 +42,18 @@
             return result;
         };
 
+        var splitHr = function(htmlArray) {
+            var result = [];
+            _.forEach(htmlArray, function(html) {
+                var splittedHtml = splitHtml(html, 'hr');
+                var splittedHtmlWithoutHr = _.filter(splittedHtml, function(element) {
+                  return (element !== '<hr>');
+                });
+                result.push(splittedHtmlWithoutHr);
+            });
+            return result;
+        };
+
         var purge = function(html) {
             return _.filter(html, function(html) {
                 if(html === '') {
@@ -58,6 +70,8 @@
             splitImg,
             _.flattenDeep,
             splitLinkImg,
+            _.flattenDeep,
+            splitHr,
             _.flattenDeep,
             splitHn,
             _.flattenDeep,
