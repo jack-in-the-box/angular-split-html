@@ -1,6 +1,6 @@
 {
   "name": "angular-split-html",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Split html content in some piece of correct html, inspired by https://github.com/punkave/split-html",
   "main": "dist/angular-split-html.js",
   "directories": {
