@@ -40,5 +40,10 @@ describe('test angular-split-html', function() {
             expect(SplitHtml.run(input)).toEqual(output);
         });
 
+        it('Service should escape empty bloks (with only <br>) and not create element for it)', function() {
+            var input = '<h1>Section 2</h1>  <p>  <br>  </p>  <h1>Section 3</h1>';
+            var output = ['<h1>Section 2</h1>', '<h1>Section 3</h1>' ];
+            expect(SplitHtml.run(input)).toEqual(output);
+        });
     });
 });

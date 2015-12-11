@@ -37,7 +37,12 @@
         var splitHn = function(htmlArray) {
             var result = [];
             _.forEach(htmlArray, function(html) {
-                result.push(splitHtml(html, 'h1,h2,h3,h4,h5,h6'));
+                var splittedHtml = splitHtml(html, 'h1,h2,h3,h4,h5,h6');
+                var splittedHtmlWithoutEmptyElements = _.filter(splittedHtml, function(element) {
+                    // we don't create element that has only br or p tag without content
+                    return _.trim(element.replace(/<(\/)?(p|br)>/ig, ''))  !== '';
+                });
+                result.push(splittedHtmlWithoutEmptyElements);
             });
             return result;
         };
