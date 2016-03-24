@@ -51,10 +51,7 @@
             var result = [];
             _.forEach(htmlArray, function(html) {
                 var splittedHtml = splitHtml(html, 'hr');
-                var splittedHtmlWithoutHr = _.filter(splittedHtml, function(element) {
-                  return (element !== '<hr>');
-                });
-                result.push(splittedHtmlWithoutHr);
+                result.push(splittedHtml);
             });
             return result;
         };

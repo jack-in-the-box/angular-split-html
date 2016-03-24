@@ -16,8 +16,8 @@ describe('test angular-split-html', function() {
 
     describe('test divide', function() {
         it('Service should be divide simple img for p', function() {
-            var input = '<p>Lorem ipsum</p><p>Lorem <img src="divide"> ipsum</p><p>Lorem ipsum</p>';
-            var output = ['<p>Lorem ipsum</p><p>Lorem </p>', '<img src="divide">', '<p> ipsum</p><p>Lorem ipsum</p>'];
+            var input = '<p>Lorem ipsum</p><p>Lorem <img src="#"> ipsum</p><p>Lorem ipsum</p>';
+            var output = ['<p>Lorem ipsum</p><p>Lorem </p>', '<img src="#">', '<p> ipsum</p><p>Lorem ipsum</p>'];
             expect(SplitHtml.run(input)).toEqual(output);
 
         });
@@ -29,14 +29,14 @@ describe('test angular-split-html', function() {
         });
 
         it('Service should split a>img from p', function() {
-            var input = '<p>Lorem <a href="http://www.google.fr"><img src="azdad"></a>ipsum</p>';
-            var output = ['<p>Lorem </p>', '<a href="http://www.google.fr"><img src="azdad"></a>', '<p>ipsum</p>' ];
+            var input = '<p>Lorem <a href="http://www.google.fr"><img src="#"></a>ipsum</p>';
+            var output = ['<p>Lorem </p>', '<a href="http://www.google.fr"><img src="#"></a>', '<p>ipsum</p>' ];
             expect(SplitHtml.run(input)).toEqual(output);
         });
 
         it('Service should split two  <p> separated by a <hr>', function() {
             var input = '<p>Lorem ipsum</p> <hr> <p>Lorene ipsum youpilou</p>';
-            var output = ['<p>Lorem ipsum</p>', '<p>Lorene ipsum youpilou</p>' ];
+            var output = ['<p>Lorem ipsum</p>', '<hr>', '<p>Lorene ipsum youpilou</p>' ];
             expect(SplitHtml.run(input)).toEqual(output);
         });
 
